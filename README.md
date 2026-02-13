@@ -68,8 +68,8 @@ Open:
 - Web: http://localhost:3000/dashboard
 
 ## Idempotency + batching (analytics-worker)
-- `processed_sales(sale_id)` prevents double counting (at-least-once delivery safe).
-- Worker folds a batch into per-event and per-(event,channel) deltas, then applies additive UPSERTs.
+- `processed_sales(sale_id)` avoids counting the same sale twice.
+- Worker groups each batch by event and channel, then updates totals with UPSERTs.
 
 ## AWS (Terraform)
 `infra/` contains placeholders for:

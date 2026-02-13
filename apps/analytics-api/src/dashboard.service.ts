@@ -3,23 +3,42 @@ import { AnalyticsRepository } from './analytics.repository';
 import { Cache } from './cache';
 import { EventMetricsAggregate } from './domain/metrics/event-metrics.aggregate';
 
+type OverviewResult = {
+  eventId: string;
+  gtvCentsTotal: number;
+  ticketsSoldTotal: number;
+  capacityTotal: number;
+  occupancyPct: number;
+};
+
+type ChannelResult = {
+  channel: string;
+  gtvCents: number;
+  ticketsSold: number;
+};
+
 @Injectable()
 export class DashboardService {
-  constructor(private readonly repo: AnalyticsRepository, private readonly cache: Cache) {}
+  constructor(
+    private readonly repo: AnalyticsRepository,
+    private readonly cache: Cache,
+  ) {}
 
   async getOverview(eventId: string) {
     const key = `dash:overview:${eventId}`;
-    const cached = await this.cache.getJson<any>(key);
+    const cached = await this.cache.getJson<OverviewResult>(key);
     if (cached) return cached;
 
     const metrics = await this.repo.getOverview(eventId);
-    const result = metrics
+    const result: OverviewResult = metrics
       ? {
           eventId,
           gtvCentsTotal: metrics.gtvCentsTotal,
           ticketsSoldTotal: metrics.ticketsSoldTotal,
           capacityTotal: metrics.capacityTotal,
-          occupancyPct: Number(new EventMetricsAggregate(metrics, []).occupancyPct().toFixed(2)),
+          occupancyPct: Number(
+            new EventMetricsAggregate(metrics, []).occupancyPct().toFixed(2),
+          ),
         }
       : {
           eventId,
@@ -29,23 +48,31 @@ export class DashboardService {
           occupancyPct: 0,
         };
 
-    await this.cache.setJson(key, result, parseInt(process.env.CACHE_TTL_SECONDS ?? '15', 10));
+    await this.cache.setJson(
+      key,
+      result,
+      parseInt(process.env.CACHE_TTL_SECONDS ?? '15', 10),
+    );
     return result;
   }
 
   async getChannels(eventId: string) {
     const key = `dash:channels:${eventId}`;
-    const cached = await this.cache.getJson<any>(key);
+    const cached = await this.cache.getJson<ChannelResult[]>(key);
     if (cached) return cached;
 
     const rows = await this.repo.getChannels(eventId);
-    const result = rows.map((r) => ({
+    const result: ChannelResult[] = rows.map((r) => ({
       channel: r.channel,
       gtvCents: r.gtvCents,
       ticketsSold: r.ticketsSold,
     }));
 
-    await this.cache.setJson(key, result, parseInt(process.env.CACHE_TTL_SECONDS ?? '15', 10));
+    await this.cache.setJson(
+      key,
+      result,
+      parseInt(process.env.CACHE_TTL_SECONDS ?? '15', 10),
+    );
     return result;
   }
 }

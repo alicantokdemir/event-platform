@@ -1,0 +1,21 @@
+{
+  "name": "tools-seed",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/seed-fixtures.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "seed": "node dist/seed-fixtures.js",
+    "seed:delete": "node dist/delete-fixtures.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.623.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
+  }
+}

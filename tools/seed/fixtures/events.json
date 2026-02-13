@@ -1,0 +1,44 @@
+[
+  {
+    "key": "demo-music-fest",
+    "name": "Demo Music Fest",
+    "location": "New York",
+    "total_capacity": 500,
+    "sales_channels": ["online", "box_office", "partners"],
+    "ticket_types": [
+      {
+        "name": "General Admission",
+        "kind": "FULL",
+        "price_cents": 7500,
+        "capacity": 350
+      },
+      {
+        "name": "Student",
+        "kind": "HALF",
+        "price_cents": 3500,
+        "capacity": 150
+      }
+    ]
+  },
+  {
+    "key": "demo-tech-conf",
+    "name": "Demo Tech Conf",
+    "location": "San Francisco",
+    "total_capacity": 300,
+    "sales_channels": ["online", "partners"],
+    "ticket_types": [
+      {
+        "name": "Early Bird",
+        "kind": "FULL",
+        "price_cents": 12000,
+        "capacity": 120
+      },
+      {
+        "name": "Regular",
+        "kind": "FULL",
+        "price_cents": 18000,
+        "capacity": 180
+      }
+    ]
+  }
+]

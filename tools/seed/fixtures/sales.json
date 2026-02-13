@@ -1,0 +1,34 @@
+[
+  {
+    "event_key": "demo-music-fest",
+    "ticket_type_name": "General Admission",
+    "channel": "online",
+    "quantity": 1,
+    "count": 80,
+    "days": 7
+  },
+  {
+    "event_key": "demo-music-fest",
+    "ticket_type_name": "Student",
+    "channel": "box_office",
+    "quantity": 1,
+    "count": 40,
+    "days": 7
+  },
+  {
+    "event_key": "demo-tech-conf",
+    "ticket_type_name": "Early Bird",
+    "channel": "online",
+    "quantity": 1,
+    "count": 60,
+    "days": 14
+  },
+  {
+    "event_key": "demo-tech-conf",
+    "ticket_type_name": "Regular",
+    "channel": "partners",
+    "quantity": 1,
+    "count": 45,
+    "days": 14
+  }
+]

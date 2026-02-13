@@ -1,8 +1,10 @@
 # Cloud-Native Event Platform (NestJS + AWS SQS + ECS + Terraform + Next.js)
 
+## Dashboard
+![Dashboard](./dashboard.png)
+
 ## Architecture
 ![Architecture](./architecture.png)
-
 
 ## Services
 - `apps/event-service` (NestJS HTTP) — events + ticket types

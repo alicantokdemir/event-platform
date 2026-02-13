@@ -1,5 +1,10 @@
 {
   "name": "cloud-native-event-platform",
+  "author": {
+    "name": "alican tokdemir",
+    "email": "alicantokdemir@gmail.com",
+    "url": "https://alicantokdemir.net"
+  },
   "private": true,
   "workspaces": [
     "apps/*",

@@ -58,7 +58,9 @@ cd tools/seed
 npm run seed
 ```
 To remove: 
+```bash
 npm run seed:delete
+```
 
 Open:
 - Event API: http://localhost:3001
